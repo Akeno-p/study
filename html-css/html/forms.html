@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="../css/forms.css" />
+
+<form>
+  <div class="form-field">
+    <label for="test-input">inputフォーム</label>
+    <input id="test-input" type="text" />
+  </div>
+
+  <div class="form-field">
+    <label for="form-textarea">プレースホルダー</label>
+    <!-- prettier-ignore -->
+    <textarea
+      id="form-textarea"
+      placeholder="これがプレースホルダー"
+      required
+      maxlength="100"
+      rows="5"
+    >初期値
+    </textarea>
+  </div>
+  <div class="form-field">
+    <label for="form-select">選択肢</label>
+    <select id="form-select" required>
+      <option value="">選択しない</option>
+      <option value="yes" selected>はい</option>
+      <option value="no">いいえ</option>
+    </select>
+  </div>
+
+  <button type="submit">送信</button>
+</form>

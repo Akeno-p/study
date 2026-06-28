@@ -1,0 +1,103 @@
+/* カンマをつけると、複数のセレクタに対して同じcssを当てる */
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  max-width: 960px;
+  min-width: 320px;
+}
+
+header {
+  background-color: aqua;
+  display: flex;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  color: rgb(39, 22, 22);
+  margin: 0;
+  padding: 20px;
+  /* borderは太さ、種類、色　の順で値を指定する */
+  /* borderはpaddingとmarginの間にできる */
+  border: 3px solid blue;
+}
+
+li {
+  list-style: none;
+}
+
+.horizontal-list {
+  display: flex;
+  gap: 10px;
+}
+
+/* スペースを開けた場合『〇〇の中の、〇〇』に対してcssがあたる */
+.test p {
+  color: blue;
+}
+
+/* スペースを開けない場合『〇〇かつ、〇〇』な要素に対してcssがあたる */
+h2.test-h2 {
+  color: brown;
+}
+
+h2 {
+  border-bottom: 2px solid black;
+  padding: 10px;
+  margin: 5px;
+  color: blueviolet;
+  transition: color 0.3s;
+}
+
+.h2-hover:hover {
+  color: aqua;
+}
+
+img {
+  height: 200px;
+  width: auto;
+}
+
+.test {
+  width: 1170px;
+}
+
+footer {
+  background-image: url(../images/test背景.png);
+  background-size: cover;
+  height: 200px;
+}
+
+.footer-title h2 {
+  opacity: 0.9;
+  letter-spacing: 5px;
+  border-color: whitesmoke;
+}
+
+.opacity-sample {
+  background-color: aqua;
+  opacity: 0.5;
+}
+
+/* opacityは上書きとかできない */
+.opacity-overwrite {
+  opacity: 1;
+}
+
+/* rgbaを使用するとその要素だけで透明度を指定できる */
+.rgba-sample {
+  background-color: rgba(100, 200, 100, 0.5);
+}
+
+.line-height {
+  line-height: 100px;
+}
+
+.block span {
+  display: block;
+}

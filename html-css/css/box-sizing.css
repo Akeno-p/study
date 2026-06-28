@@ -1,0 +1,9 @@
+div {
+  width: 500px;
+  padding: 100px;
+  background-color: aqua;
+}
+
+.is-box-sizing {
+  box-sizing: border-box;
+}

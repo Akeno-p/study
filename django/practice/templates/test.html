@@ -1,0 +1,722 @@
+<!-- prettier-ignore -->
+{% extends "test_template.html" %}
+
+
+{% block content %}
+<div class="row">
+  <div class="col-md-4">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">本を登録</p>
+        <div class="mb-3">
+          <label class="form-label" for="book">本のタイトル</label>
+          <input
+            type="text"
+            class="form-control"
+            id="book_title"
+            placeholder="タイトル"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="book">値段</label>
+          <input
+            type="number"
+            class="form-control"
+            id="book_price"
+            placeholder="値段"
+          />
+        </div>
+        <button class="btn btn-primary w-100" id="book_register">
+          送信する
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card border-0" id="stock">
+      <div class="card-body p-2">
+        <p class="fw-bold">本の在庫を登録</p>
+        <div class="mb-3">
+          <label class="form-label">本のタイトル</label>
+          <input
+            type="text"
+            class="form-control book_title"
+            placeholder="タイトル"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">在庫</label>
+          <input
+            type="number"
+            class="form-control book_stock"
+            placeholder="在庫"
+          />
+        </div>
+        <button class="btn btn-primary w-100 register_btn">送信する</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">著者を登録</p>
+        <div class="mb-3">
+          <label class="form-label" for="author_name"></label>
+          <input
+            type="text"
+            class="form-control"
+            id="author_name"
+            placeholder="著者"
+          />
+        </div>
+        <button class="btn btn-primary w-100" id="author_register">
+          送信する
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mt-3">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">出版社を登録</p>
+        <div class="mb-3">
+          <label class="form-label" for="company_name"></label>
+          <input
+            type="text"
+            class="form-control"
+            id="company_name"
+            placeholder="出版社名"
+          />
+        </div>
+        <button class="btn btn-primary w-100" id="company_register">
+          送信する
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mt-3">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">本と著者の紐付け</p>
+        <div class="mb-3">
+          <label class="form-label" for="connect_book">本のタイトル</label>
+          <input
+            type="text"
+            class="form-control"
+            id="connect_book"
+            placeholder="本のタイトル"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="connect_author">著者の名前</label>
+          <input
+            type="text"
+            class="form-control"
+            id="connect_author"
+            placeholder="著者の名前"
+          />
+        </div>
+        <button class="btn btn-primary w-100" id="book_author_connect">
+          送信する
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mt-3">
+    <div class="card border-0">
+      <div class="card-body p-2" id="connect_book_company">
+        <p class="fw-bold">本と会社の紐付け</p>
+        <div class="mb-3">
+          <label class="form-label">本のタイトル</label>
+          <input
+            type="text"
+            class="form-control book_title"
+            placeholder="本のタイトル"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">出版社名</label>
+          <input
+            type="text"
+            class="form-control company_name"
+            placeholder="出版社名"
+          />
+        </div>
+        <button class="btn btn-primary w-100 connect_btn">送信する</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mt-3">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">本を削除</p>
+        <div class="mb-3">
+          <label class="form-label" for="book">削除対象の本のタイトル</label>
+          <input
+            type="text"
+            class="form-control"
+            id="delete_title"
+            placeholder="削除本タイトル"
+          />
+        </div>
+        <button class="btn btn-primary w-100" id="delete_book">送信する</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mt-3">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">本のIDからタイトルを検索</p>
+        <div class="mb-3">
+          <label class="form-label" for="book_id">本のID</label>
+          <input
+            type="number"
+            class="form-control"
+            id="book_id"
+            placeholder="ID"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="book_filter_condition">検索条件</label>
+          <select id="book_filter_condition" class="form-select">
+            <option value="get_title">タイトルを取得</option>
+            <option value="exists">存在確認</option>
+            <option value="count">件数確認</option>
+          </select>
+        </div>
+        <button class="btn btn-primary w-100" id="get_book">送信する</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mt-3">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">著者から本のタイトルを検索</p>
+        <div class="mb-3">
+          <label class="form-label">執筆本一覧</label>
+          <input
+            type="text"
+            class="form-control"
+            id="author"
+            placeholder="著者の名前を入力"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="author_condition">検索条件</label>
+          <select id="author_condition" class="form-select">
+            <option value="perfect">完全一致</option>
+            <option value="contains">含む（大文字・小文字の区別あり）</option>
+            <option value="icontains">含む（大文字・小文字の区別なし）</option>
+          </select>
+        </div>
+        <button class="btn btn-primary w-100" id="author_filter">
+          送信する
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mt-3">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <div class="mb-3">
+          <p class="fw-bold">著者と出版社に一致する本タイトル</p>
+          <div class="mb-3">
+            <label class="form-label" for="author_name">著者</label>
+            <input
+              type="text"
+              class="form-control"
+              id="author_name"
+              placeholder="著者"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="company_name">出版社</label>
+            <input
+              type="text"
+              class="form-control"
+              id="company_name"
+              placeholder="出版社"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="author_company_condition"
+              >検索条件</label
+            >
+            <select id="author_company_condition" class="form-select">
+              <option value="and">and</option>
+              <option value="or">or</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn btn-primary w-100" id="author_company_filter">
+          送信する
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mt-3">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">価格の条件に一致する本を検索</p>
+        <div class="mb-3">
+          <label class="form-label">価格で絞り込み</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price"
+            placeholder="価格を入力"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="price_filter">検索条件</label>
+          <select id="price_filter" class="form-select">
+            <option value="gte">以上</option>
+            <option value="gt">超</option>
+            <option value="lte">以下</option>
+            <option value="lt">未満</option>
+          </select>
+        </div>
+        <button class="btn btn-primary w-100" id="price_filter_btn">
+          送信する
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mt-3">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">複数検索</p>
+        <div class="mb-3">
+          <label class="form-label">価格1</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price_1"
+            placeholder="価格を入力"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">価格2</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price_2"
+            placeholder="価格を入力"
+          />
+        </div>
+        <button class="btn btn-primary w-100" id="price_in_btn">
+          送信する
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mt-3">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">範囲検索</p>
+        <div class="mb-3">
+          <label class="form-label">ここから(価格)</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price_start"
+            placeholder="価格を入力"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">ここまで(価格)</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price_end"
+            placeholder="価格を入力"
+          />
+        </div>
+        <button class="btn btn-primary w-100" id="price_range_btn">
+          送信する
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mt-3">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">値段に対しての色々な計算</p>
+        <div class="mb-3">
+          <label class="form-label" for="reckoning_condition">検索条件</label>
+          <select id="reckoning_condition" class="form-select">
+            <option value="max">最大</option>
+            <option value="min">最小</option>
+            <option value="sum">合計</option>
+            <option value="avg">平均</option>
+          </select>
+        </div>
+        <button class="btn btn-primary w-100" id="reckoning_price">
+          送信する
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mt-3">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">IDから本の詳細情報を取得</p>
+        <div class="mb-3">
+          <label class="form-label" for="book_info_id">本のID</label>
+          <input
+            type="number"
+            class="form-control"
+            id="book_info_id"
+            placeholder="ID"
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="book_info_choice">検索条件</label>
+          <select id="book_info_choice" class="form-select">
+            <option value="title">タイトル</option>
+            <option value="price">値段</option>
+            <option value="tax">税込価格</option>
+            <option value="stock">在庫数</option>
+            <option value="label">ラベル</option>
+          </select>
+        </div>
+        <button class="btn btn-primary w-100" id="book_info_btn">
+          送信する
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mt-3" id="django_form_card">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">Djangoのformを使用して本の在庫状態を更新</p>
+        <form method="POST" action="{% url 'django_form_register' %}">
+          {% csrf_token %}
+          <label class="form-label">本のタイトル</label>
+          {{ input_form.book_title }}
+          <label class="form-label">在庫状態</label>
+          {{ select_form.book_status }}
+          <button type="submit" class="btn btn-primary w-100">送信する</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mt-3" id="django_form_card_ajax">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">Djangoのformを使用して本の在庫状態を更新(ajax)</p>
+        <label class="form-label">本のタイトル</label>
+        {{ input_form.book_title }}
+        <label class="form-label">在庫状態</label>
+        {{ select_form.book_status }}
+        <button type="submit" class="btn btn-primary w-100 register_btn">
+          送信する
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 mt-3" id="django_model_form_card">
+    <div class="card border-0">
+      <div class="card-body p-2">
+        <p class="fw-bold">ModelFormを使用する</p>
+        <label class="form-label">本のタイトル</label>
+        {{ book_form.title }}
+        <button type="submit" class="btn btn-primary w-100 register_btn">
+          送信する
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block js_content %}
+<script>
+  $(document).ready(function () {
+    // model formを使用して本を保存
+    $("#django_model_form_card .register_btn").on("click", function () {
+      const book_title = $("#django_model_form_card .book_title").val();
+      $.ajax({
+        url: "{% url  'django_model_form_register' %}",
+        type: "POST",
+        data: { title: book_title },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        if (response.status === "success") {
+          alert("成功");
+        } else if (response.status === "error") {
+          alert(response.message);
+        }
+      });
+    });
+
+    // Django formを使用してみる。
+    $("#django_form_card_ajax .register_btn").on("click", function () {
+      const book_title = $("#django_form_card_ajax .book_title").val();
+      const book_status = $("#django_form_card_ajax .book_status").val();
+      $.ajax({
+        url: "{% url 'django_form_register_ajax' %}",
+        type: "POST",
+        data: { book_title: book_title, book_status: book_status },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        if (response.status === "error") {
+          alert(response.message);
+        } else if (response.status === "success") {
+          alert("登録に成功しました");
+        }
+      });
+    });
+
+    // 本の在庫登録
+    $("#stock .register_btn").on("click", function () {
+      console.log("これが本の在庫部分");
+      const book_title = $("#stock .book_title").val();
+      const book_stock = $("#stock .book_stock").val();
+      $.ajax({
+        url: "{% url 'book_stock_register' %}",
+        type: "POST",
+        data: { book_title: book_title, book_stock: book_stock },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        if (response.status === "success") {
+          alert(book_title + "の在庫数" + book_stock + "を登録しました。");
+        } else {
+          alert(response.message);
+        }
+      });
+    });
+
+    // 出版社と本の紐付け
+    $("#connect_book_company .connect_btn").on("click", function () {
+      const book_title = $("#connect_book_company .book_title").val();
+      const company_name = $("#connect_book_company .company_name").val();
+      $.ajax({
+        url: "{% url 'connect_book_company' %}",
+        type: "POST",
+        data: { book_title: book_title, company_name: company_name },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        if (response.status === "success") {
+          alert(book_title + "と" + company_name + "の紐付けに成功しました");
+        } else {
+          alert(response.message);
+        }
+      });
+    });
+
+    // 会社登録
+    $("#company_register").on("click", function () {
+      const company_name = $("#company_name").val();
+      $.ajax({
+        url: "{% url 'company_register' %}",
+        type: "POST",
+        data: { company_name: company_name },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        if (response.status === "success") {
+          alert(company_name + "を登録しました。");
+        } else {
+          alert(response.message);
+        }
+      });
+    });
+
+    // 詳細情報取得
+    $("#book_info_btn").on("click", function () {
+      const book_id = $("#book_info_id").val();
+      const choice = $("#book_info_choice").val();
+      $.ajax({
+        url: "{% url 'book_info' %}",
+        type: "POST",
+        data: { book_id: book_id },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        alert(response.info[choice]);
+      });
+    });
+
+    // 著者登録
+    $("#author_register").on("click", function () {
+      const author_name = $("#author_name").val();
+      $.ajax({
+        url: "{% url 'author_register' %}",
+        type: "POST",
+        data: { author_name: author_name },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        alert(author_name + "を登録しました");
+      });
+    });
+
+    // 本と著者紐付け
+    $("#book_author_connect").on("click", function () {
+      const book_title = $("#connect_book").val();
+      const author_name = $("#connect_author").val();
+      $.ajax({
+        url: "{% url 'book_author_connect' %}",
+        type: "POST",
+        data: { book_title: book_title, author_name: author_name },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        if (response.status === "error") {
+          alert(response.message);
+        } else {
+          alert(author_name + "を登録しました");
+        }
+      });
+    });
+
+    // 色々な計算
+    $("#reckoning_price").on("click", function () {
+      const reckoning_condition = $("#reckoning_condition").val();
+      $.ajax({
+        url: "{% url 'reckoning_price' %}",
+        type: "POST",
+        data: { reckoning_condition: reckoning_condition },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        alert(response.result);
+      });
+    });
+
+    // 本の削除
+    $("#delete_book").on("click", function () {
+      const delete_title = $("#delete_title").val();
+      $.ajax({
+        url: "{% url 'delete_book' %}",
+        type: "POST",
+        data: { delete_title: delete_title },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        if (response.status === "success") {
+          alert(delete_title + "を削除しました");
+        } else if (response.status === "none") {
+          alert(delete_title + "は存在しません。");
+        }
+      });
+    });
+
+    // 価格から条件に一致する本のタイトルを検索
+    $("#price_filter_btn").on("click", function () {
+      const price = $("#price").val();
+      const filter = $("#price_filter").val();
+      $.ajax({
+        url: "{% url 'price_filter' %}",
+        type: "POST",
+        data: { price: price, filter: filter },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        if (response.titles.length === 0) {
+          alert("この条件に一致する本はありません");
+        } else {
+          alert(response.titles);
+        }
+      });
+    });
+    // 複数検索
+    $("#price_in_btn").on("click", function () {
+      const price_1 = $("#price_1").val();
+      const price_2 = $("#price_2").val();
+      $.ajax({
+        url: "{% url 'price_filter' %}",
+        type: "POST",
+        data: { price_1: price_1, price_2: price_2 },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        if (response.titles.length === 0) {
+          alert("この条件に一致する本はありません");
+        } else {
+          alert(response.titles);
+        }
+      });
+    });
+    // 範囲検索
+    $("#price_range_btn").on("click", function () {
+      const price_start = $("#price_start").val();
+      const price_end = $("#price_end").val();
+      $.ajax({
+        url: "{% url 'price_filter' %}",
+        type: "POST",
+        data: { price_start: price_start, price_end: price_end },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        if (response.titles.length === 0) {
+          alert("この条件に一致する本はありません");
+        } else {
+          alert(response.titles);
+        }
+      });
+    });
+    // 登録
+    $("#book_register").on("click", function () {
+      const title = $("#book_title").val();
+      const price = $("#book_price").val();
+      $.ajax({
+        url: "{% url 'register_book' %}",
+        type: "POST",
+        data: { title: title, price: price },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        if (response.status === "success") {
+          alert(title + "の登録に成功しました");
+        } else if (response.status === "error_tyouhuku") {
+          alert(title + "はすでに登録されています。");
+        }
+      });
+    });
+    // IDからタイトル取得
+    $("#get_book").on("click", function () {
+      const book_id = $("#book_id").val();
+      const condition = $("#book_filter_condition").val();
+      $.ajax({
+        url: "{% url 'get_book' %}",
+        type: "POST",
+        data: { book_id: book_id, condition: condition },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        alert(response.result);
+      });
+    });
+    // タイトルをフィルター検索
+    $("#author_filter").on("click", function () {
+      const author = $("#author").val();
+      const condition = $("#author_condition").val();
+      $.ajax({
+        url: "{% url 'author_filter' %}",
+        type: "POST",
+        data: { author: author, condition: condition },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        if (response.titles.length === 0) {
+          alert("この著者の本は登録されていません");
+        } else {
+          alert(response.titles + "が" + author + "が書いた本です。");
+        }
+      });
+    });
+    // 著者と出版社に一致する本タイトル
+    $("#author_company_filter").on("click", function () {
+      const author = $("#author_name").val();
+      const company = $("#company_name").val();
+      const condition = $("#author_company_condition").val();
+      $.ajax({
+        url: "{% url 'author_company_filter' %}",
+        type: "POST",
+        data: { author: author, company: company, condition: condition },
+        headers: { "X-CSRFToken": "{{ csrf_token }}" },
+      }).done(function (response) {
+        if (response.titles.length === 0) {
+          alert("この条件の本は登録されていません");
+        } else {
+          alert(response.titles);
+        }
+      });
+    });
+  });
+</script>
+<!-- prettier-ignore -->
+{% endblock %}

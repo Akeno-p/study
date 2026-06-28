@@ -1,0 +1,39 @@
+main {
+  height: 200vh;
+}
+
+/* 見た目だけ動いて場所はそのままなので要素が被る */
+.position-relative {
+  background-color: aqua;
+  position: relative;
+  height: 250px;
+  width: 450px;
+  top: 20px;
+  left: 20px;
+}
+
+/* position指定済みの親を基準に位置を指定する */
+.position-absolute {
+  background-color: chartreuse;
+  position: absolute;
+  height: 100px;
+  width: 150px;
+  top: 30px;
+  left: 100px;
+}
+
+/* 画面基準で場所指定(画面スクロールしても常にその位置にある) */
+.position-fixed {
+  background-color: violet;
+  position: fixed;
+  height: 100px;
+  width: 120px;
+  top: 300px;
+  left: 300px;
+}
+
+.position-sticky {
+  background-color: yellow;
+  position: sticky;
+  top: 30px;
+}

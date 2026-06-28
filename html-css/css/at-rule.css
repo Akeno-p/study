@@ -1,0 +1,25 @@
+@import url(./pseudo-class.css);
+
+@media (max-width: 600px) {
+  p {
+    background-color: #333333;
+  }
+}
+
+@keyframes buttonPop {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+button {
+  animation: buttonPop 0.2s;
+}

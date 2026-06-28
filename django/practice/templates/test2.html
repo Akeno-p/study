@@ -1,0 +1,65 @@
+<!-- prettier-ignore -->
+{% extends "test_template.html" %}
+
+<!-- prettier-ignore -->
+{% block content %}
+
+<div>
+  <div class="card p-3 mb-3">
+    <p class="text-secondary mb-1">ID1のタイトル</p>
+    <div class="fs-5">{{book.title}}</div>
+  </div>
+  <div class="card p-3 mb-3">
+    <p class="text-secondary mb-1">ID2のタイトル</p>
+    <div class="fs-5">{{book_dict.2.title}}</div>
+  </div>
+  <div class="card p-3 mb-3">
+    <p class="text-secondary mb-1">本の在庫</p>
+    <div class="fs-5">{{book_stock|default:"在庫がありません"}}</div>
+  </div>
+  <div class="card p-3 mb-3">
+    <p class="text-secondary mb-1">今日の日付</p>
+    <div class="fs-5">{{today|date:"Y年m月d日"}}</div>
+  </div>
+  <div class="card p-3 mb-3">
+    <p class="text-secondary mb-1">ID1のタイトルの長さ</p>
+    <div class="fs-5">{{book.title|length}}</div>
+  </div>
+  <div class="card p-3 mb-3">
+    <p class="text-secondary mb-1">ID1のラベル</p>
+    <div class="fs-5">{{book.label|linebreaksbr}}</div>
+  </div>
+  <div class="card p-3 mb-3">
+    <p class="text-secondary mb-1">ID1のラベル(10文字以降切り詰め)</p>
+    <div class="fs-5">{{book.label|truncatechars_html:10}}</div>
+  </div>
+  <div class="card p-3 mb-3">
+    <p class="text-secondary mb-1"></p>
+    <p class="text-secondary mb-1">在庫状況</p>
+    <div class="fs-5">
+      {% if book.status == "order" %}
+      <p>未発注の状態です</p>
+      {% elif book.status == "waiting" %}
+      <p>発注済みですが、まだ陳列されていません。</p>
+      {% elif book.status == "completion" %}
+      <p>陳列済みです。在庫は{{book_stock}}冊です。</p>
+      {% endif %}
+    </div>
+  </div>
+  <div class="card p-3 mb-3">
+    <p class="text-secondary mb-1">登録されている本</p>
+    <div class="fs-5">
+      {% for book in book_dict %}
+      <div class="card-body border mb-2">
+        <p class="mb-0">タイトル：{{book.title}}</p>
+        <p class="mb-0">値段：{{book.price}}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+<!-- prettier-ignore -->
+{% block js_content %}
+{% endblock %}

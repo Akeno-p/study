@@ -1,0 +1,6 @@
+
+.text-before::before {
+  content: "■";
+  color: brown;
+  margin-right: 8px;
+}

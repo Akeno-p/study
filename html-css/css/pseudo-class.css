@@ -1,0 +1,12 @@
+button:hover {
+  background-color: aqua;
+}
+
+button:active {
+  background-color: tomato;
+}
+
+input:focus {
+  border: 1px solid brown;
+  outline: none;
+}

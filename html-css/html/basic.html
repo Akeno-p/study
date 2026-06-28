@@ -1,0 +1,82 @@
+<!doctype html>
+<!-- 日本語ページであることを示す。
+検索エンジンに言語を伝えたり翻訳機能が言語を判断しやすくなる -->
+<html lang="ja">
+  <head>
+    <!-- 文字コード -->
+    <meta charset="UTF-8" />
+    <!-- スマホでもみやすくするための表示設定 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- cssファイルの読み込み。relで役割を伝える。cssファイルの場合stylesheet -->
+    <link rel="stylesheet" href="../css/basics.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+    />
+    <!-- サイトのアイコンはrel="icon" -->
+    <link rel="icon" href="../images/test画像.png" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>勉強用</h1>
+      </div>
+      <div>
+        <ul class="horizontal-list">
+          <li>テスト1</li>
+          <li>テスト2</li>
+          <li>テスト3</li>
+        </ul>
+      </div>
+    </header>
+    <main>
+      <div class="test">
+        <h2 class="test-h2">
+          ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
+        </h2>
+        <p>こんにちわ</p>
+        <!-- aタグでリンクになる。飛び先の指定にはhref属性を使う。 -->
+        <a href="https://github.com/">githubのリンク</a>
+        <!-- 画像の表示にはimgタグを使う。画像のurlをsrc属性で指定する。 -->
+        <img src="../images/test画像.png" />
+      </div>
+      <div>
+        <a href="https://github.com">
+          <img src="../images/GitHub_Invertocat_Black.png" alt="github" />
+        </a>
+      </div>
+      <div class="opacity-sample">
+        <p class="opacity-overwrite">test opacity</p>
+      </div>
+      <div class="rgba-sample">
+        <p class="rgba-sample">test rgba</p>
+      </div>
+      <div class="line-height">
+        <p>test</p>
+        <p>test</p>
+        <p>test</p>
+      </div>
+      <div class="block">
+        <span>block</span>
+        <span>block</span>
+        <span>block</span>
+      </div>
+    </main>
+    <footer>
+      <div class="footer-title">
+        <h2 class="h2-hover">Study</h2>
+        <input type="text" value="" placeholder="ぷれすほるだー" />
+        <textarea>おりゃ</textarea>
+      </div>
+      <div class="footer-list">
+        <!--リストを作るには liをつかう。ulなら黒点に、olなら数字になる-->
+        <ul>
+          <li>勉強内容1</li>
+          <li>勉強内容2</li>
+          <li>勉強内容3</li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>
