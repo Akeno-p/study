@@ -44,13 +44,13 @@ erDiagram
 
 ## 属性（箱の中身）の書き方
 
-箱の中にカラムを書くときは `{ }` で囲む。**型 → 名前 → キーの印** の順。
+箱の中にカラムを書くときは `{ }` で囲む。**型 → 名前 → キーの印 → コメント** の順。
 
 ```
 User {
-    bigint id PK
-    string username
-    string name
+    bigint id PK "自動採番される"
+    string username "@の後ろ"
+    string name "表示名"
 }
 ```
 
