@@ -55,3 +55,21 @@ ER図では線の端の記号でカーディナリティを表す。この「鳥
 ※ `o{` ↔ `}o` のように左右で向きが反転した書き方があるが、意味は同じ。線のどちら側に置くかで見た目が鏡になるだけ。
 
 ※ 1対1（`\|\|`）で棒が2本なのは、「最大1（内側）」と「最小1＝必須（外側）」を別々に表しているため。
+
+## 型の書き方
+
+ER図に型を書くときは細かい型名まで厳密に書く必要はない。
+設計の意図が伝わればいい。
+
+### よく使用される型の書き方
+
+| 意図         | ER図に書く型        | djangoのフィールド           | postgreSQL               |
+| ------------ | ------------------- | ---------------------------- | ------------------------ |
+| 整数         | int                 | IntegerField                 | integer                  |
+| 大きな整数   | bigint              | BigAutoField,BigIntegerFiedl | bigint                   |
+| 短い文字列   | varchar,varchar(10) | CharField(max_length=10)     | varchar(10)              |
+| 長い文字列   | text                | TextField                    | text                     |
+| 真偽値       | boolean             | BooleanField                 | boolean                  |
+| 日時         | datetime            | DetaTimeField                | timestamp with time zone |
+| 小数(正確な) | decimal             | DecimalField                 | numeric                  |
+| 小数         | float               | FloatField                   | duble precision          |
