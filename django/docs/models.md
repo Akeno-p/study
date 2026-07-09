@@ -59,6 +59,7 @@ class User(model.Model):
 | max_length        | 最大文字数（CharFieldでは必須）                                                             |
 | null=True         | DBにNULLを許可する                                                                          |
 | blank=True        | フォームで空欄を許可する                                                                    |
+| help_text         | Admin画面やフォームでフィールドの下に表示される補足説明                                     |
 | default           | デフォルト値を設定する                                                                      |
 | unique=True       | 重複を禁止する                                                                              |
 | auto_now=True     | 保存のたびに現在日時をセット                                                                |
@@ -95,6 +96,17 @@ test = models.CharField(
     max_length=10,
     choices=TEST_CHOICES,
 )
+```
+
+#### ■ help_textについて
+
+Admin画面やフォームでフィールドの下に補足説明として表示される文章。
+
+表示される場所はAdmin画面とフォームだけなので、それらを使わない場合は実質モデル定義を読むときのコメントの役割になる。
+純粋にコメント目的なら `#` でも同じことはできるが、help_textにしておくとAdmin画面を使ったときにそのまま説明として表示されるメリットがある。
+
+```python
+totp_secret = models.TextField(blank=True, null=True, help_text="TOTP秘密鍵")
 ```
 
 ### 🌌空欄を許可したい場合
@@ -287,6 +299,50 @@ author.book_set # このbook_setはモデルマネージャー
 こうすることで `on_delete=CASCADE` が「Aを消したらBも消える」という自然な意味になる。
 
 **逆にしてしまうと「Bを消したらAも消える」となり、意図しない削除が発生する。**
+
+---
+
+#### ■ 参照先モデルの文字列指定について
+
+`ForeignKey` などの第一引数は、モデルクラスそのものではなく**文字列**でも指定できる。
+別アプリのモデルを参照する場合は `"アプリ名.モデル名"` の形式で書く。
+
+```python
+class Tweet(models.Model):
+    author = models.ForeignKey(
+        "users.User",  # usersアプリのUserモデル。importが不要
+        on_delete=models.SET_NULL,
+        null=True,
+    )
+```
+
+- importを書かなくていいのでとても楽
+- アプリ同士が互いにimportし合う循環参照を防げるため、Django公式でも推奨されている書き方
+- 同じアプリ内のモデルを参照するなら `"モデル名"` だけでいい
+
+---
+
+#### ■ related_nameについて
+
+逆参照時の名前（デフォルトは `モデル名小文字_set` など）を自分で決められるフィールドオプション。
+
+```python
+class Tweet(models.Model):
+    author = models.ForeignKey(
+        "users.User",
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="tweets",
+    )
+```
+
+```python
+user.tweets.all()  # related_nameがない場合は user.tweet_set.all()
+```
+
+- 公式ドキュメントでは必須ではない。必須になるのは「同じモデルへの外部キーが1つのモデル内に複数あって逆参照名が衝突する場合」と「抽象基底クラスでリレーションを定義する場合」のみ
+- ただし基本的には書いた方がいい。デフォルト名と同じになる場合でも全リレーションフィールドに明示することで、統一性が保たれ可読性が上がる
+- 開発者の間でも「基本的にrelated_nameは明記しよう」となっているらしい。
 
 ---
 
