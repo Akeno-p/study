@@ -159,6 +159,12 @@
 {% endblock %}
 ```
 
+### 💡 {% block content %}のcontentは慣習
+
+流し込む対象を決めるための`{% block content %}`のcontentの部分は自由に設定できる。
+自由に設定できる。
+ただ慣習としてcontentが使われがち
+
 ---
 
 ## {% include %}について
