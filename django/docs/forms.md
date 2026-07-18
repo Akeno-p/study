@@ -175,12 +175,12 @@ class BookForm(forms.ModelForm):
 
 ### 💡 forms.Formとの違い
 
-| 項目 | forms.Form | forms.ModelForm |
-|---|---|---|
-| フィールド定義 | 手動で一つずつ書く | モデルから自動で引き継がれる |
-| バリデーション | 手動で設定する | モデルの制約が自動反映される |
+| 項目              | forms.Form             | forms.ModelForm                  |
+| ----------------- | ---------------------- | -------------------------------- |
+| フィールド定義    | 手動で一つずつ書く     | モデルから自動で引き継がれる     |
+| バリデーション    | 手動で設定する         | モデルの制約が自動反映される     |
 | choices（選択肢） | フォーム側で定義が必要 | モデル側の定義がそのまま使われる |
-| DB保存 | 自分でORMを書く | `form.save()` で完結する |
+| DB保存            | 自分でORMを書く        | `form.save()` で完結する         |
 
 ### ✒️ views.pyでの使い方
 
@@ -210,8 +210,10 @@ def example_view(request):
 
 ```html
 <!-- 個別に展開する場合 -->
-{{ book_form.title }}   <!-- titleの入力欄 -->
-{{ book_form.status }}  <!-- statusの選択欄 -->
+{{ book_form.title }}
+<!-- titleの入力欄 -->
+{{ book_form.status }}
+<!-- statusの選択欄 -->
 
 <!-- 一括で全フィールドを展開する場合 -->
 {{ book_form }}
